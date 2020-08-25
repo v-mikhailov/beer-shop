@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d2edef32ab95c601243f3145c999fad1",
+    "revision": "082d5d427167d63309b4e12391c04685",
     "url": "/beer-shop/index.html"
   },
   {
-    "revision": "cacea037bb44ad640e42",
+    "revision": "3751bbabfc0fe26ef6cd",
     "url": "/beer-shop/static/css/main.20914552.chunk.css"
   },
   {
-    "revision": "02967345e56b11174e5d",
-    "url": "/beer-shop/static/js/2.98640765.chunk.js"
+    "revision": "e1a7f7af5188fd981f5e",
+    "url": "/beer-shop/static/js/2.0bcfd94b.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/beer-shop/static/js/2.98640765.chunk.js.LICENSE.txt"
+    "url": "/beer-shop/static/js/2.0bcfd94b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "cacea037bb44ad640e42",
-    "url": "/beer-shop/static/js/main.9609f57c.chunk.js"
+    "revision": "3751bbabfc0fe26ef6cd",
+    "url": "/beer-shop/static/js/main.73836516.chunk.js"
   },
   {
     "revision": "b9b159ad41b352136cda",
