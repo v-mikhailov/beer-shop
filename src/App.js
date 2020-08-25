@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {Route, Switch } from 'react-router-dom';
 
 import Header from './components/Header';
 import Search from './components/Search';
@@ -72,7 +72,7 @@ const App = () => {
   }, [])
 
   return (
-    <BrowserRouter>
+    <React.Fragment>
       <Header />
       <Switch>
         <Route exact path="/">
@@ -104,7 +104,7 @@ const App = () => {
         </Route>
       </Switch>
         <Footer />
-    </BrowserRouter>
+    </React.Fragment>
   );
 }
 
