@@ -1,25 +1,110 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import Header from './components/Header';
+import Search from './components/Search';
+import Catalog from './components/Catalog';
+import Footer from './components/Footer';
+
 import './App.css';
 
-function App() {
+const API_ENDPOINT = 'https://api.punkapi.com/v2/beers';
+const API_SEARCH_BEER = '?beer_name=';
+const API_PAGINATE = '?page=';
+
+const App = () => {
+  const [catalog, setCatalog] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [isError, setIsError] = React.useState(false);
+
+  const [inputValue, setInputValue] = React.useState('');
+  const [url, setUrl] = React.useState(`${API_ENDPOINT}`);
+  const [totalPages, setTotalPages] = React.useState(13);
+  const [favBeerList, setFavBeerList] = React.useState([]);
+
+  const handleFetchCatalog = React.useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(url);
+      const catalog = await response.json();
+      setCatalog(catalog);
+      setIsLoading(false);
+    } catch {
+      setIsError(true)
+    }
+  }, [url]);
+
+  const handleInputChange = event => {
+    setInputValue(event.target.value);
+  }
+
+  const handleInputSubmit = event => {
+    event.preventDefault();
+    inputValue ? setUrl(`${API_ENDPOINT}${API_SEARCH_BEER}${inputValue}`) : setUrl(`${API_ENDPOINT}`)
+  }
+
+  const handleFavClick = beer => {
+    const clearedBeerList = [...favBeerList];
+    clearedBeerList.find(savedBeer => savedBeer.id === beer.id) ? 
+    clearedBeerList.splice(clearedBeerList.findIndex(savedBeer => savedBeer.id === beer.id), 1) : clearedBeerList.push(beer);
+    setFavBeerList(clearedBeerList);
+    setFavBeerLocal(clearedBeerList);
+  }
+
+  const paginate = (pageNumber) => {
+    setUrl(`${API_ENDPOINT}${API_PAGINATE}${pageNumber}`)
+  }
+
+  const setFavBeerLocal = data => {
+    localStorage.setItem('favBeersList', JSON.stringify(data));
+  }
+
+  const getFavBeerFromLocal = () => {
+    return JSON.parse(localStorage.getItem('favBeersList'));
+  }
+ 
+  React.useEffect(() => {
+    handleFetchCatalog();
+  }, [handleFetchCatalog]);
+
+  React.useEffect(() => {
+    setFavBeerList(getFavBeerFromLocal());
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Switch>
+        <Route exact path="/">
+          <Search 
+          onSubmit={handleInputSubmit} 
+          value={inputValue}
+          onChange={handleInputChange}
+          />
+          {isError && <p>Something went wrong...</p>}
+          {isLoading ? (<p>Loading...</p>
+          ) : (
+            <Catalog 
+              list = {catalog} 
+              paginate={paginate}
+              totalPages={totalPages}
+              onFavClick={handleFavClick}
+              favBeers={favBeerList}
+              isFavouritesPage={false}
+            />
+          )}
+        </Route>
+        <Route path="/favourites">
+          <Catalog 
+            list={getFavBeerFromLocal()}
+            favBeers={getFavBeerFromLocal()}
+            onFavClick={handleFavClick}
+            isFavouritesPage={true}
+          />
+        </Route>
+      </Switch>
+        <Footer />
+    </BrowserRouter>
   );
 }
 
