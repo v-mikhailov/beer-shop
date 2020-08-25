@@ -48,28 +48,15 @@ const App = () => {
     clearedBeerList.find(savedBeer => savedBeer.id === beer.id) ? 
     clearedBeerList.splice(clearedBeerList.findIndex(savedBeer => savedBeer.id === beer.id), 1) : clearedBeerList.push(beer);
     setFavBeerList(clearedBeerList);
-    setFavBeerLocal(clearedBeerList);
   }
 
   const paginate = (pageNumber) => {
     setUrl(`${API_ENDPOINT}${API_PAGINATE}${pageNumber}`)
   }
-
-  const setFavBeerLocal = data => {
-    localStorage.setItem('favBeersList', JSON.stringify(data));
-  }
-
-  const getFavBeerFromLocal = () => {
-    return JSON.parse(localStorage.getItem('favBeersList'));
-  }
  
   React.useEffect(() => {
     handleFetchCatalog();
   }, [handleFetchCatalog]);
-
-  React.useEffect(() => {
-    setFavBeerList(getFavBeerFromLocal());
-  }, [])
 
   return (
     <React.Fragment>
@@ -96,8 +83,8 @@ const App = () => {
         </Route>
         <Route path="/favourites">
           <Catalog 
-            list={getFavBeerFromLocal()}
-            favBeers={getFavBeerFromLocal()}
+            list={favBeerList}
+            favBeers={favBeerList}
             onFavClick={handleFavClick}
             isFavouritesPage={true}
           />
