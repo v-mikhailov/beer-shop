@@ -6,6 +6,7 @@ import Search from './components/Search';
 import Catalog from './components/Catalog';
 import Footer from './components/Footer';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 const API_ENDPOINT = 'https://api.punkapi.com/v2/beers';
@@ -61,6 +62,7 @@ const App = () => {
   return (
     <React.Fragment>
       <Header />
+      <h1>hello world</h1>
       <Switch>
         <Route exact path="/">
           <Search 
