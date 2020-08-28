@@ -1,13 +1,5 @@
-.header {
+.custom-nav-bg {
   background-color: #78DBE2;
-  padding: 8px 15px;
-}
-
-.header__container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .title {

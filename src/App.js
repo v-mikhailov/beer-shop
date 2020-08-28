@@ -61,10 +61,10 @@ const App = () => {
 
   return (
     <React.Fragment>
-      <Header />
       <h1>hello world</h1>
       <Switch>
         <Route exact path="/">
+        <Header isFavouritesPage={false}/>
           <Search 
           onSubmit={handleInputSubmit} 
           value={inputValue}
@@ -84,6 +84,7 @@ const App = () => {
           )}
         </Route>
         <Route path="/favourites">
+        <Header isFavouritesPage={true}/>
           <Catalog 
             list={favBeerList}
             favBeers={favBeerList}
