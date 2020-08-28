@@ -7,7 +7,7 @@ const Catalog = props => {
 
   return(
     <section className="catalog">
-      {props.isFavouritesPage && <h2>Favourites</h2>}
+      {props.isFavouritesPage && <h2 className="text-center">Favourites</h2>}
       <div className="flex-container">
         <Card 
           list={props.list}

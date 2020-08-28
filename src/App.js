@@ -62,7 +62,7 @@ const App = () => {
   }, [handleFetchCatalog]);
 
   return (
-    <React.Fragment>
+    <div className="page-container">
       <Switch>
         <Route exact path="/">
         <Header isFavouritesPage={false}/>
@@ -95,8 +95,8 @@ const App = () => {
           />
         </Route>
       </Switch>
-        <Footer />
-    </React.Fragment>
+      <Footer />
+    </div>
   );
 }
 

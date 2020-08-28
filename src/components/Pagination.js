@@ -16,7 +16,7 @@ const Pagination = props => {
     )
   }
   return (
-    <BootstrapPagination size="lg" className="justify-content-center">
+    <BootstrapPagination size="sm" className="justify-content-center flex-wrap">
       {items}
     </BootstrapPagination>
   )
