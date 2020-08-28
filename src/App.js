@@ -61,7 +61,6 @@ const App = () => {
 
   return (
     <React.Fragment>
-      <h1>hello world</h1>
       <Switch>
         <Route exact path="/">
         <Header isFavouritesPage={false}/>
