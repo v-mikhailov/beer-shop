@@ -8,13 +8,13 @@ const Catalog = props => {
   return(
     <section className="catalog">
     {props.isFavouritesPage && <h2>Favourites</h2>}
-    <div className="catalog__container">
+    <div className="flex-container">
       <Card 
         list={props.list}
         onFavClick={props.onFavClick}
         favBeers={props.favBeers}
       />
-    </div>
+    </div> 
     <Pagination totalPages={props.totalPages} paginate={props.paginate} />
   </section>
   )
