@@ -87,8 +87,6 @@
   font-size: 14px;
 }
 
-/*   */
-
 .card__info-list {
   margin: 0;
   padding: 0;
@@ -107,28 +105,6 @@
 }
 
 /*  */
-
-
-.link__pagination {
-  text-decoration: none;
-  color: #000;
-}
-
-.nav__list {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  margin: 0;
-}
-
-.nav__item {
-  margin-right: 10px;
-}
-
-.nav__item:last-child {
-  margin-right: 0;
-}
-
 
 .footer {
   padding-top: 20px;

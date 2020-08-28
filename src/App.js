@@ -21,6 +21,7 @@ const App = () => {
   const [inputValue, setInputValue] = React.useState('');
   const [url, setUrl] = React.useState(`${API_ENDPOINT}`);
   const [totalPages, setTotalPages] = React.useState(13);
+  const [activePage, setActivePage] = React.useState(1);
   const [favBeerList, setFavBeerList] = React.useState([]);
 
   const handleFetchCatalog = React.useCallback(async () => {
@@ -52,6 +53,7 @@ const App = () => {
   }
 
   const paginate = (pageNumber) => {
+    setActivePage(pageNumber);
     setUrl(`${API_ENDPOINT}${API_PAGINATE}${pageNumber}`)
   }
  
@@ -76,6 +78,7 @@ const App = () => {
               list = {catalog} 
               paginate={paginate}
               totalPages={totalPages}
+              activePage={activePage}
               onFavClick={handleFavClick}
               favBeers={favBeerList}
               isFavouritesPage={false}
