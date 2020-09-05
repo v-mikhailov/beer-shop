@@ -9,9 +9,11 @@ import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+
 const API_ENDPOINT = 'https://api.punkapi.com/v2/beers';
 const API_SEARCH_BEER = '?beer_name=';
 const API_PAGINATE = '?page=';
+const API_PER_PAGE = 'per_page=24';
 
 const App = () => {
   const [catalog, setCatalog] = React.useState([]);
@@ -19,7 +21,7 @@ const App = () => {
   const [isError, setIsError] = React.useState(false);
 
   const [inputValue, setInputValue] = React.useState('');
-  const [url, setUrl] = React.useState(`${API_ENDPOINT}`);
+  const [url, setUrl] = React.useState(`${API_ENDPOINT}?${API_PER_PAGE}`);
   const [totalPages, setTotalPages] = React.useState(13);
   const [activePage, setActivePage] = React.useState(1);
   const [favBeerList, setFavBeerList] = React.useState([]);
@@ -54,7 +56,7 @@ const App = () => {
 
   const paginate = (pageNumber) => {
     setActivePage(pageNumber);
-    setUrl(`${API_ENDPOINT}${API_PAGINATE}${pageNumber}`)
+    setUrl(`${API_ENDPOINT}${API_PAGINATE}${pageNumber}&${API_PER_PAGE}`)
   }
  
   React.useEffect(() => {
