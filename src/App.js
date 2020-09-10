@@ -9,7 +9,6 @@ import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-
 const API_ENDPOINT = 'https://api.punkapi.com/v2/beers';
 const API_SEARCH_BEER = '?beer_name=';
 const API_PAGINATE = '?page=';
@@ -34,6 +33,7 @@ const App = () => {
       setCatalog(catalog);
       setIsLoading(false);
     } catch {
+      setIsLoading(false);
       setIsError(true)
     }
   }, [url]);
@@ -69,23 +69,21 @@ const App = () => {
         <Route exact path="/">
         <Header isFavouritesPage={false}/>
           <Search 
-          onSubmit={handleInputSubmit} 
-          value={inputValue}
-          onChange={handleInputChange}
+            onSubmit={handleInputSubmit} 
+            value={inputValue}
+            onChange={handleInputChange}
           />
-          {isError && <p>Something went wrong...</p>}
-          {isLoading ? (<p>Loading...</p>
-          ) : (
-            <Catalog 
-              list = {catalog} 
-              paginate={paginate}
-              totalPages={totalPages}
-              activePage={activePage}
-              onFavClick={handleFavClick}
-              favBeers={favBeerList}
-              isFavouritesPage={false}
-            />
-          )}
+          <Catalog 
+            list = {catalog} 
+            totalPages={totalPages}
+            activePage={activePage}
+            favBeers={favBeerList}
+            loading={isLoading}
+            error={isError}
+            isFavouritesPage={false}
+            paginate={paginate}
+            onFavClick={handleFavClick}
+          />
         </Route>
         <Route path="/favourites">
         <Header isFavouritesPage={true}/>
